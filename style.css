@@ -1,0 +1,99 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: white;
+    text-align: center;
+  }
+  
+  h1 {
+    margin-top: 20px;
+  }
+  
+  #array-section {
+    margin-top: 40px;
+  }
+  
+  input {
+    padding: 8px;
+    width: 120px;
+  }
+  
+  button {
+    padding: 8px 12px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  
+  #array-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+  }
+  .array-box {
+    width: 50px;
+    height: 50px;
+    background: #22c55e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  }
+  .shift-right {
+    transform: translateX(70px);
+  }
+  
+  .new-node {
+    background: #3b82f6;
+  }
+  .traverse {
+    background: #facc15 !important; /* yellow */
+    color: black;
+    transform: scale(1.15);
+  }
+  .checking {
+    background: #ef4444 !important; /* red */
+    transform: scale(1.1);
+  }
+  
+  .found {
+    background: #2256c5 !important; /* blue */
+    transform: scale(1.2);
+  }
+  .not-found {
+    background: #6b7280 !important; /* gray */
+    transform: scale(1.1);
+  }      
+  #search-info {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  #search-info span {
+    font-weight: bold;
+    color: #38bdf8;
+  }
+  #complexity-box {
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  #time-complexity {
+    color: #f472b6; /* pink */
+  }
+  .low {
+    background: #38bdf8 !important; /* blue */
+  }
+  
+  .mid {
+    background: #facc15 !important; /* yellow */
+    transform: scale(1.2);
+  }
+  
+  .high {
+    background: #fb7185 !important; /* pink */
+  }
+      
