@@ -16,7 +16,6 @@ function renderArray(highlightIndex = -1) {
       box.style.transform = "scale(1)";
     }, 50);
 
-    // highlight newly inserted element
     if (index === highlightIndex) {
       box.classList.add("new-node");
     }
