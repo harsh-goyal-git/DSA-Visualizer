@@ -1,5 +1,6 @@
 let arr = [];
 const container = document.getElementById("array-container");
+let isAnimating = false;
 
 /* ---------------- RENDER ARRAY ---------------- */
 function renderArray(highlightIndex = -1) {
@@ -76,8 +77,12 @@ function animateShift(index, value) {
 document.getElementById("traverse-btn").addEventListener("click", traverseArray);
 
 function traverseArray() {
+  if (isAnimating) return;
+
   const boxes = document.querySelectorAll(".array-box");
   if (boxes.length === 0) return;
+
+  disableControls();
 
   let i = 0;
 
@@ -85,24 +90,28 @@ function traverseArray() {
     boxes.forEach(box => box.classList.remove("traverse"));
 
     boxes[i].classList.add("traverse");
-
     i++;
 
     if (i === boxes.length) {
       setTimeout(() => {
         boxes.forEach(box => box.classList.remove("traverse"));
+        enableControls();
       }, 300);
       clearInterval(interval);
     }
   }, 600);
 }
+
 document.getElementById("search-btn").addEventListener("click", linearSearch);
 
 function linearSearch() {
+  if (isAnimating) return;
+
   const key = document.getElementById("search-value").value;
   const boxes = document.querySelectorAll(".array-box");
-
   if (key === "" || boxes.length === 0) return;
+
+  disableControls();
 
   let i = 0;
   let comparisons = 0;
@@ -119,23 +128,19 @@ function linearSearch() {
     document.getElementById("current-index").innerText = i;
     comparisons++;
     document.getElementById("comparison-count").innerText = comparisons;
-
-    if (comparisons === 1) {
-      document.getElementById("time-complexity").innerText = "O(1)";
-    } else {
-      document.getElementById("time-complexity").innerText = "O(n)";
-    }
+    document.getElementById("time-complexity").innerText = comparisons === 1? "O(1)" : "O(n)";
 
     if (boxes[i].innerText == key) {
       boxes[i].classList.add("found");
       clearInterval(interval);
+      enableControls();
     } else {
       boxes[i].classList.add("checking");
       i++;
     }
 
     if (i >= boxes.length) {
-      document.getElementById("time-complexity").innerText = "O(n)";
+      enableControls();
       clearInterval(interval);
     }
   }, 700);
@@ -146,15 +151,16 @@ function resetBoxStyles() {
     box.classList.remove("low", "mid", "high", "found", "checking");
   });
 }
-document
-  .getElementById("binary-search-btn")
-  .addEventListener("click", binarySearch);
+document.getElementById("binary-search-btn").addEventListener("click", binarySearch);
 
 function binarySearch() {
+  if (isAnimating) return;
+
   const key = document.getElementById("search-value").value;
   if (key === "" || arr.length === 0) return;
 
-  // sorted array
+  disableControls();
+
   arr.sort((a, b) => a - b);
   renderArray();
 
@@ -169,6 +175,7 @@ function binarySearch() {
     resetBoxStyles();
 
     if (low > high) {
+      enableControls();
       clearInterval(interval);
       return;
     }
@@ -185,6 +192,7 @@ function binarySearch() {
 
     if (arr[mid] == key) {
       boxes[mid].classList.add("found");
+      enableControls();
       clearInterval(interval);
     } else if (arr[mid] < key) {
       low = mid + 1;
@@ -193,3 +201,16 @@ function binarySearch() {
     }
   }, 900);
 }
+
+  const controls = document.querySelectorAll("button, input");
+
+  function disableControls() {
+    isAnimating = true;
+    controls.forEach(el => el.disabled = true);
+  }
+
+  function enableControls() {
+    isAnimating = false;
+    controls.forEach(el => el.disabled = false);
+  }
+
