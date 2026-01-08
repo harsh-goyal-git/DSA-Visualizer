@@ -101,4 +101,47 @@ body {
     opacity: 0.5;
     cursor: not-allowed;
   }
+
+  #linkedlist-container {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
   
+  .ll-node {
+    display: flex;
+    align-items: center;
+    background: #22c55e;
+    color: black;
+    font-weight: bold;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  
+  .ll-data {
+    padding: 12px;
+    background: #86efac;
+  }
+  
+  .ll-next {
+    padding: 12px;
+    background: #4ade80;
+  }
+  
+  .arrow {
+    font-size: 24px;
+    margin: 0 5px;
+  }
+  .pointer-glow {
+  color: #f97316; /* orange */
+  font-weight: bold;
+  text-shadow: 0 0 10px #f97316;
+  transform: scale(1.3);
+}
+
+.node-active {
+  background: #fde047 !important;
+  transform: scale(1.15);
+}
